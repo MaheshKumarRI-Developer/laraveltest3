@@ -37,6 +37,10 @@ pipeline {
                 sh 'docker compose run --rm artisan test'
             }
         }
+        stage('Initialize'){
+            def dockerHome = tool 'myDocker'
+            env.PATH = "${dockerHome}/bin:${env.PATH}"
+        }
     }
     post {
         always {
